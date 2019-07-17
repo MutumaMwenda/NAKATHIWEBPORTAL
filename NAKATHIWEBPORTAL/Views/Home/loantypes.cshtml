@@ -1,0 +1,114 @@
+﻿@model IEnumerable<NAKATHIWEBPORTAL.Models.Loan_Type>
+
+<script src="~/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+<script src="~/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+<script src="~/global_assets/js/demo_pages/datatables_basic.js"></script>
+
+<div style="line-height:4em;padding-bottom:1em;">
+    @if (TempData["success"] != null)
+    {
+        <div class="alert alert-success alert-dismissable" id="alert">
+            <strong>@TempData["success"]</strong>
+        </div>
+    }
+</div>
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-success alert-dismissable" id="alert">
+        <strong>@TempData["error"]</strong>
+    </div>
+}
+<div class="navbar navbar-expand-lg navbar-light " style="margin-bottom:16px">
+
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href="~/Home/loantype" class="navbar-nav-link  text-primary d-none d-md-block">
+                <i class="icon-add"></i>
+                Create Loan Type
+            </a>
+        </li>
+    </ul>
+
+
+
+
+</div>
+
+
+
+
+
+<!-- Basic datatable -->
+<!-- /main navbar -->
+
+<div class="card">
+
+    <div class="card-header header-elements-inline">
+        <h5 class="card-title text-center">Loan Types</h5>
+
+        <div class="header-elements">
+            <div class="list-icons">
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <table class="table datatable-basic table-striped">
+        <thead>
+            <tr>
+
+                <th>
+                    Id
+                </th>
+                <th>
+                    name
+                </th>
+                <th>
+                    Interest Rate
+                </th>
+                <th>
+                    Repayment Period
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td>
+                        <a href="@Url.Action( "Edit",new { id = item.id })"> @Html.DisplayFor(modelItem => item.name)</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.interestRate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.repaymentPeriod)
+                    </td>
+
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
+<script>
+
+    var $alert = $('.alert');
+    if ($alert.length) {
+        setTimeout(function () {
+            $alert.fadeIn(1000, 0);
+            $alert.fadeOut("slow");
+        }, 3000)
+
+    }
+</script>
+

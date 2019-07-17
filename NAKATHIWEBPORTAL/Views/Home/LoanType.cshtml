@@ -1,0 +1,96 @@
+﻿@model NAKATHIWEBPORTAL.Models.RevenueType
+
+
+<div class="content">
+    <!-- Animated -->
+    <div class="animated fadeIn">
+
+
+    <div class="card">
+        @using (Html.BeginForm("LoanType", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            <div class="card-header">
+                <strong>Loan Type</strong>
+            </div>
+            <div class="card-body card-block">
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Loan Name</label>
+                    <div class="input-group col-sm-6">
+                        @Html.TextBoxFor(m => m.name, new { @class = "form-control", Styles = "border-radius:50%", @placeholder = "Enter Loan name", required = "required" })
+                        @Html.ValidationMessageFor(m => m.name, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+         
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Interest Rate</label>
+                    <div class="input-group col-sm-6">
+                        @Html.TextBoxFor(m => m.interestRate, new { @class = "form-control", Styles = "border-radius:50%", @placeholder = "Enter interest rate", required = "required" })
+                        @Html.ValidationMessageFor(m => m.interestRate, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+          
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Repayment Period</label>
+                    <div class="input-group col-sm-6">
+                        @Html.TextBoxFor(m => m.repaymentPeriod, new { @class = "form-control", Styles = "border-radius:50%", @placeholder = "Enter repayment period", required = "required" })
+                        @Html.ValidationMessageFor(m => m.repaymentPeriod, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+            </div>
+            <div class="card-body card-block">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="col-sm-10 text-center" style="line-height:2em">
+                            <input type="submit" value="Submit" id="submitButton" class="btn btn-success btn-lg pull-center" />
+                        </div>
+                        @*<input class="form-control">*@
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

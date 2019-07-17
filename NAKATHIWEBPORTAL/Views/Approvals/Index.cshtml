@@ -1,0 +1,109 @@
+﻿@model IEnumerable<NAKATHIWEBPORTAL.ViewModel.CommitteeApprovalVM>
+
+@{
+    ViewBag.Title = "All Approvals";
+}
+<script src="~/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+<script src="~/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+<script src="~/global_assets/js/demo_pages/datatables_basic.js"></script>
+
+<!-- Basic datatable -->
+<!-- /main navbar -->
+<div class="card">
+    <div class="card-header header-elements-inline">
+        <h5 class="card-title text-center">Approvals</h5>
+        <div class="header-elements">
+            <div class="list-icons">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-item dropdown">
+        <a href="~/Approvals/4" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-check "></i>
+            @ViewBag.selected
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-left">
+            <a href="~/Approvals/Index/" class="dropdown-item english active"><i class="fa fa-remove "></i>All Approvals</a>
+            <a href="~/Approvals/Index/1" class="dropdown-item english "><i class="fa fa-remove "></i>In Review Approvals</a>
+            <a href="~/Approvals/Index/3" class="dropdown-item ukrainian"><i class="fa fa-check "></i> Rejected Approvals</a>
+            <a href="~/Approvals/Index/2" class="dropdown-item deutsch"><i class="fa fa-check "></i> Approved Approvals</a>
+        </div>
+        <div class="card-body">
+        </div>
+
+        <table class="table datatable-basic">
+            <thead>
+                <tr>
+                    <th> Name</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Date Applied</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                       <td>
+                        <a href="@Url.Action( "Details",new { id = item.id })"> @Html.DisplayFor(modelItem => item.name)</a>
+                    </td>
+                        <td> @Html.DisplayFor(modelItem => item.type) </td>
+                        <td> @Html.DisplayFor(modelItem => item.amount) </td>
+                        <td> @Html.DisplayFor(modelItem => item.date_created)</td>
+                        @if (item.status == "1")
+                        {
+                            <td><span class="badge badge-info">Pending</span></td>
+                       
+                        }
+                        else if (item.status == "2")
+                        {
+                            <td><span class="badge badge-success">Approved</span></td>
+
+                       
+                        }
+                        else if (item.status == "3")
+                        {
+                            <td><span class="badge badge-danger">Rejected</span></td>
+
+                        }
+                    </tr>
+
+                }
+
+
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+<!-- /basic datatable -->
+
+<script>
+
+$(function () {
+    $('.link').on("click", function (e) {
+        e.preventDefault();
+        //replace the get with this.href to load the edit page
+        $.get('https://developer.mozilla.org/en-US/docs/Web', function (data) {
+            //replace the content returned
+            $("#mainContent").html(data);
+        });
+        //show the modal
+        $('#default-example-modal').modal({
+            keyboard : true,
+        }, 'show');
+        return false;
+    })
+
+})
+</script>

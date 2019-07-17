@@ -1,0 +1,255 @@
+﻿@model IEnumerable<NAKATHIWEBPORTAL.Models.Shares_table>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="">
+ <!--<![endif]-->
+<head>
+    @Html.Partial("style12")
+</head>
+<body>
+    <!-- Left Panel -->
+    <!-- Left Panel -->
+    <!-- Right Panel -->
+    @Html.Partial("sidebar")
+
+    <div id="right-panel" class="right-panel">
+
+        <!-- Header-->
+
+
+        <div class="content">
+            <p>
+                @*@Html.ActionLink("Create New", "Create")*@
+                <button class="btn btn-primary btn-lg" value="Create" >Create</button>
+            </p>
+            <div class="animated fadeIn">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">Share Capital Summary</strong>
+                            </div>
+                            <div class="card-body">
+
+                                <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.initial_sacco_share_capital)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.sacco_share_capital_balance)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.total_Shares)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.total_Shares_balance)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.cost_per_share)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.min_share)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.max_share)
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.initial_sacco_share_capital)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.sacco_share_capital_balance)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.total_Shares)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.total_Shares_balance)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.cost_per_share)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.min_share)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.max_share)
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div><!-- .animated -->
+        </div><!-- .content -->
+
+
+        <div class="clearfix"></div>
+
+        <footer class="site-footer">
+            <div class="footer-inner bg-white">
+                <div class="row">
+                    <div class="col-sm-6">
+                        Copyright &copy; 2019 Impax Africa
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        Designed by Muchomba
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div><!-- /#right-panel -->
+    <!-- Right Panel -->
+    <!-- Scripts -->
+    @Html.Partial("scripts")
+
+
+    @*<script src="~/Scripts/js/lib/data-table/datatables.min.js"></script>
+    <script src="~/Scripts/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+    <script src="~/Scripts/js/lib/data-table/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/js/lib/data-table/buttons.bootstrap.min.js"></script>
+    <script src="~/Scripts/js/lib/data-table/jszip.min.js"></script>
+    <script src="~/Scripts/js/lib/data-table/vfs_fonts.js"></script>
+    <script src="~/Scripts/js/lib/data-table/buttons.html5.min.js"></script>
+    <script src="~/Scripts/js/lib/data-table/buttons.print.min.js"></script>
+    <script src="~/Scripts/js/lib/data-table/buttons.colVis.min.js"></script>
+    <script src="~/Scripts/js/init/datatables-init.js"></script>*@
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#bootstrap-data-table-export').DataTable();
+        });
+    </script>
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>getShares</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.initial_sacco_share_capital)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sacco_share_capital_balance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.total_Shares)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.total_Shares_balance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cost_per_share)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.min_share)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.max_share)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.initial_sacco_share_capital)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sacco_share_capital_balance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.total_Shares)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.total_Shares_balance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cost_per_share)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.min_share)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.max_share)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>*@

@@ -1,0 +1,58 @@
+﻿@model NAKATHIWEBPORTAL.Models.Member_Type
+
+
+
+
+
+
+<div class="card">
+    @using (Html.BeginForm("MemberEdit", "Member", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        <div class="card-header">
+            <strong>Member Type</strong>
+            <hr />
+        </div>
+
+        <div class="card-body card-block">
+
+            <div class="form-group row">
+                <label for="name" class="col-sm-3 col-sm-push-1 col-form-label">Member Type Name:</label>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body card-block">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="col-sm-10 text-center" style="line-height:2em">
+                        <input type="submit" value="Update" id="submitButton" class="btn btn-primary btn-lg pull-center" />
+                    </div>
+                    @*<input class="form-control">*@
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+<
+
+
+
+
+
+
+
+
+
+
+
+
+

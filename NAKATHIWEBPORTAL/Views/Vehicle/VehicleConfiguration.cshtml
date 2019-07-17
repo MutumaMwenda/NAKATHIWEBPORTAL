@@ -1,0 +1,79 @@
+﻿@model NAKATHIWEBPORTAL.Models.Vehicle_Configuration
+
+<div class="content">
+    <!-- Animated -->
+    <div class="animated fadeIn">
+
+
+        <div style="line-height:4em;padding-bottom:1em;">
+            @if (TempData["success"] != null)
+            {
+                <div class="alert alert-success alert-dismissable" id="alert">
+                    <strong>@TempData["success"]</strong>
+                </div>
+            }
+        </div>
+        @if (TempData["error"] != null)
+        {
+            <div class="alert alert-success alert-dismissable" id="alert">
+                <strong>@TempData["error"]</strong>
+            </div>
+        }
+
+      
+            <div class="card">
+                @using (Html.BeginForm("VehicleConfiguration", "Vehicle", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    <div class="card-header">
+                        <strong>Vehicle  Configuration Form</strong>
+                    </div>
+
+                    <div class="card-body card-block">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-sm-push-1 col-form-label">Vehicle Model</label>
+                            <div class="input-group col-md-6">
+                                @Html.DropDownListFor(m => m.modelId, ViewBag.List as SelectList, new { @class = "form-control", Styles = "border-radius:50%", @placeholder = "select vehicle model", required = "required" })
+                                @Html.ValidationMessageFor(m => m.modelId, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                 
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-sm-push-1 col-form-label">Vehicle Configuration</label>
+                            <div class="input-group col-md-6">
+                                @Html.TextBoxFor(m => m.configuration, new { @class = "form-control", Styles = "border-radius:50%", @placeholder = "Enter Configuration", required = "required" })
+                                @Html.ValidationMessageFor(m => m.configuration, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-sm-push-1 col-form-label">Vehicle Mode</label>
+                            <div class="input-group col-md-6">
+                                @Html.TextBoxFor(m => m.mode, new { @class = "form-control", Styles = "border-radius:50%", @placeholder = "Enter vehicle mode", required = "required" })
+                                @Html.ValidationMessageFor(m => m.mode, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body card-block">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="col-sm-10 text-center" style="line-height:2em">
+                                    <input type="submit" value="Submit" id="submitButton" class="btn btn-success btn-lg pull-center" />
+                                </div>
+                                @*<input class="form-control">*@
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+    </div>
+
+</div>
+
+

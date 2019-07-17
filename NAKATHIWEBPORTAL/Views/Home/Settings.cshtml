@@ -1,0 +1,104 @@
+﻿@model IEnumerable<NAKATHIWEBPORTAL.Models.RevenueType>
+
+<script src="~/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+<script src="~/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+<script src="~/global_assets/js/demo_pages/datatables_basic.js"></script>
+
+<div class="navbar navbar-expand-lg navbar-light " style="margin-bottom:16px">
+
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href="~/Home/loantype" class="navbar-nav-link  text-primary d-none d-md-block">
+                <i class="icon-add"></i>
+                Create
+            </a>
+        </li>
+    </ul>
+
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href="#" class="navbar-nav-link  text-primary d-none d-md-block">
+                <i class="icon-trash"></i>
+                Delete Type
+            </a>
+        </li>
+    </ul>
+
+
+
+</div>
+
+
+
+
+
+<!-- Basic datatable -->
+<!-- /main navbar -->
+
+<div class="card">
+
+    <div class="card-header header-elements-inline">
+        <h5 class="card-title text-center">Loan types</h5>
+
+        <div class="header-elements">
+            <div class="list-icons">
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <table class="table datatable-basic">
+        <thead>
+            <tr>
+
+                <th>
+                    Id
+                </th>
+                <th>
+                    name
+                </th>
+                <th>
+                    Interest Rate
+                </th>
+                <th>
+                    Repayment Period
+                </th>
+
+                <th>
+                    Action
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.interestRate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.repaymentPeriod)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "editMemberModal", @data_taget = "editMemberModal" }) |
+                        @Html.ActionLink("View", "Details", new { id = item.id })
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+

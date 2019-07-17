@@ -1,0 +1,165 @@
+﻿@model NAKATHIWEBPORTAL.Models.Saving_Type
+
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Nakathi Web Portal</title>
+    <meta name="description" content="Ela Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    @Html.Partial("style12")
+</head>
+
+<body>
+    <!-- Left Panel -->
+    @Html.Partial("sidebar")
+    <!-- /#left-panel -->
+    <!-- Right Panel -->
+    <div id="right-panel" class="right-panel">
+        <!-- Header-->
+        @Html.Partial("dashboard12")
+        <!-- /#header -->
+        <!-- Content -->
+        <div class="content">
+            <!-- Animated -->
+            <div class="animated fadeIn">
+
+
+                <div style="line-height:4em;padding-bottom:1em;">
+                    @if (TempData["success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissable" id="alert">
+                            <strong>@TempData["success"]</strong>
+                        </div>
+                    }
+                </div>
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-success alert-dismissable" id="alert">
+                        <strong>@TempData["error"]</strong>
+                    </div>
+                }
+
+                <div class="col-xs-6 col-sm-6">
+                    <div class="card">
+                        @using (Html.BeginForm("SavingType", "Home", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                            <div class="card-header">
+                                <strong>Saving Type</strong> <small> Form</small>
+                            </div>
+                            <div class="card-body card-block">
+                                <div class="form-group">
+                                    <label class=" form-control-label">Revenue Name</label>
+                                    <div class="input-group">
+                                        @Html.TextBoxFor(m => m.name, new { @class = "form-control", Styles = "border-radius:50%", @placeholder = "Enter name", required = "required" })
+                                        @Html.ValidationMessageFor(m => m.name, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body card-block">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="col-sm-10 text-center" style="line-height:2em">
+                                            <input type="submit" value="Submit" id="submitButton" class="btn btn-success btn-lg pull-center" />
+                                        </div>
+                                        @*<input class="form-control">*@
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- .animated -->
+    </div>
+
+    <!-- /.content -->
+    <div class="clearfix"></div>
+    <!-- Footer -->
+    <footer class="site-footer">
+
+        @Html.Partial("footer12")
+    </footer>
+    <!-- /.site-footer -->
+    <!-- /#right-panel -->
+    <!-- Scripts -->
+    @Html.Partial("scripts12")
+
+    <script>
+
+        var $alert = $('.alert');
+        if ($alert.length) {
+            setTimeout(function () {
+                $alert.fadeIn(1000, 0);
+                $alert.fadeOut("slow");
+            }, 3000)
+
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

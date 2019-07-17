@@ -1,0 +1,57 @@
+﻿@model NAKATHIWEBPORTAL.Models.License_Issuer
+
+<div class="content">
+    <!-- Animated -->
+    <div class="animated fadeIn">
+
+
+
+        <div class="card">
+            @using (Html.BeginForm("Licence_Issuer", "Insuarance", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                <div class="card-header">
+                    <strong>Licence Issuer Form </strong>
+                </div>
+                <div class="card-body card-block">
+
+
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-sm-push-1 col-form-label">Licence Issuer Name:</label>
+                        <div class="col-sm-6">
+                            @Html.EditorFor(m => m.name, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(m => m.name, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-sm-push-1 col-form-label">Licence Issuer Code:</label>
+                        <div class="col-sm-6">
+                            @Html.EditorFor(m => m.license_issuer_code, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(m => m.license_issuer_code, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card-body card-block">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="col-sm-10 text-center" style="line-height:2em">
+                                <input type="submit" value="Submit" id="submitButton" class="btn btn-success btn-lg pull-center" />
+                            </div>
+                            @*<input class="form-control">*@
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+
+    </div>
+
+</div>
+
+

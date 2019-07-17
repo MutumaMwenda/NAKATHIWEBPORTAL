@@ -1,0 +1,54 @@
+﻿@model NAKATHIWEBPORTAL.Models.Sacco_Staff_Position
+
+<div class="content">
+    <!-- Animated -->
+    <div class="animated fadeIn">
+
+
+
+        <div class="card">
+            @using (Html.BeginForm("PositionEdit", "Staff", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                <div class="card-header">
+                    <strong>Staff Position Configuration Form</strong>
+                </div>
+
+                <div class="card-body card-block">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Staff Position Type</label>
+                        <div class="input-group col-sm-6">
+                            @Html.TextBoxFor(m => m.name, new { @class = "form-control", Styles = "border-radius:50%", @placeholder = "Enter name", required = "required" })
+                            @Html.ValidationMessageFor(m => m.name, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="card-body card-block">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="col-sm-10 text-center" style="line-height:2em">
+                                <input type="submit" value="Update" id="submitButton" class="btn btn-success btn-lg pull-center" />
+                            </div>
+                            @*<input class="form-control">*@
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+
+
+

@@ -1,0 +1,109 @@
+﻿@model IEnumerable<NAKATHIWEBPORTAL.ViewModel.RevenueVM>
+
+@{
+    //Layout = null;
+}
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="http://codeseven.github.com/toastr/toastr.js"></script>
+<link href="http://codeseven.github.com/toastr/toastr.css" rel="stylesheet">
+<script src="https://use.fontawesome.com/d94f445648.js"></script>
+
+@*<button type="button" class="btn btn-primary pull-right" data-toggle="modal" id="btnAdd">
+        Add Revenue<span class="fa fa-plus-square" aria-hidden="true"></span>
+    </button>*@
+@*if(TempData["success"] != null)
+    {
+<div class="alert alert-success alert-dismissable" id="alert">
+    <strong>@TempData["success"]</strong>
+</div>
+    }*@
+
+<table class="table table-striped table-hover table-bordered" id="RevenueTable" style="margin-top:20px">
+    <thead>
+        <tr>
+
+            <th>
+                Member Name
+                @*@Html.DisplayNameFor(model => model.first_name)*@
+            </th>
+            <th>
+                Revenue Type
+                @*@Html.DisplayNameFor(model => model.name)*@
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.reg_no)*@
+                Registration Number
+            </th>
+            <th>
+                Amount Deposited
+                @*@Html.DisplayNameFor(model => model.amount)*@
+            </th>
+            <th>
+                Date Collected
+                @*@Html.DisplayNameFor(model => model.date_collected)*@
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.first_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.reg_no)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date_collected)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "editRevenue", new { id = item.id }, new { @class = "editRevenueModal", @data_taget = "editRevenueModal" })
+
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+
+
+</table>
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section scripts{
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $('#RevenueTable').DataTable();
+        
+    </script>
+
+}
+
+
+
+<div class="span4 proj-div" data-toggle="modal" data-target="#editRevenueModal"></div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+</div>
+
+<script>
+
+    var $alert = $('.alert');
+    if ($alert.length) {
+        setTimeout(function () {
+            $alert.fadeIn(1000, 0);
+            $alert.fadeOut("slow");
+        }, 3000)
+
+    }
+</script>

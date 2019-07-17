@@ -1,0 +1,218 @@
+﻿@model NAKATHIWEBPORTAL.Models.Certification
+
+@{
+    Layout = null;
+}
+<!doctype html>
+<html class="no-js" lang="">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Nakathi Web Portal</title>
+    <meta name="description" content="Ela Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    @Html.Partial("style12")
+</head>
+
+<body>
+    <!-- Left Panel -->
+    @Html.Partial("sidebar")
+    <!-- /#left-panel -->
+    <!-- Right Panel -->
+    <div id="right-panel" class="right-panel">
+        <!-- Header-->
+        @Html.Partial("dashboard12")
+        <!-- /#header -->
+        <!-- Content -->
+        <div class="content">
+            <!-- Animated -->
+            <div class="animated fadeIn">
+
+
+                <div style="line-height:4em;padding-bottom:1em;">
+                    @if (TempData["success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissable" id="alert">
+                            <strong>@TempData["success"]</strong>
+                        </div>
+                    }
+                </div>
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-success alert-dismissable" id="alert">
+                        <strong>@TempData["error"]</strong>
+                    </div>
+                }
+
+                <div class="col-xs-6 col-sm-6">
+                    <div class="card">
+                        @using (Html.BeginForm("DriversConductors", "Vehicle", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                            <div class="card-header">
+                                <strong>Vehicle Certification </strong> <small> Form</small>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class=" form-control-label">Certificate owner ID number </label>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(m => m.possessor, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                    @Html.ValidationMessageFor(m => m.possessor, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class=" form-control-label">Certificate Name </label>
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(m => m.certfication_id, ViewBag.List as SelectList, "--Please select certification name--", new { @class = "form-control", required = "required" })
+                                    @Html.ValidationMessageFor(m => m.certfication_id, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="card-body card-block">
+                                <div class="form-group">
+                                    <label class=" form-control-label">Select Certification Type</label>
+                                    <div class="input-group">
+                                        @Html.DropDownListFor(m => m.certfication_id, ViewBag.List as SelectList, "--Please select certification type-", new { @class = "form-control", required = "required" })
+                                        @Html.ValidationMessageFor(m => m.certfication_id, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body card-block">
+                                <div class="form-group">
+                                    <label class=" form-control-label">Select Certification Type</label>
+                                    <div class="input-group">
+                                        @Html.DropDownListFor(m => m.certfication_id, ViewBag.List as SelectList, "--Please select certification type-", new { @class = "form-control", required = "required" })
+                                        @Html.ValidationMessageFor(m => m.certfication_id, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+                            <div class="card-body card-block">
+                                <div class="form-group">
+                                    <label class=" form-control-label">Active From  </label>
+                                    <div class="input-group">
+                                        @Html.TextBoxFor(m => m.active_from, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", Styles = "border-radius:50%", required = "required" })
+                                        @Html.ValidationMessageFor(m => m.active_from, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body card-block">
+                                <div class="form-group">
+                                    <label class=" form-control-label">Expiry Date </label>
+                                    <div class="input-group">
+                                        @Html.TextBoxFor(m => m.expiryDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", Styles = "border-radius:50%", required = "required" })
+                                        @Html.ValidationMessageFor(m => m.expiryDate, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="card-body card-block">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="col-sm-10 text-center" style="line-height:2em">
+                                            <input type="submit" value="Submit" id="submitButton" class="btn btn-success btn-lg pull-center" />
+                                        </div>
+                                        @*<input class="form-control">*@
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- .animated -->
+    </div>
+
+    <!-- /.content -->
+    <div class="clearfix"></div>
+    <!-- Footer -->
+    <footer class="site-footer">
+
+        @*@Html.Partial("footer12")*@
+    </footer>
+    <!-- /.site-footer -->
+    <!-- /#right-panel -->
+    <!-- Scripts -->
+    @Html.Partial("scripts12")
+
+    <script>
+
+        var $alert = $('.alert');
+        if ($alert.length) {
+            setTimeout(function () {
+                $alert.fadeIn(1000, 0);
+                $alert.fadeOut("slow");
+            }, 3000)
+
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

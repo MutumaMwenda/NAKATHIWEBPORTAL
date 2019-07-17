@@ -1,0 +1,87 @@
+﻿@model NAKATHIWEBPORTAL.Models.Vehicle_make
+
+
+<div class="content">
+    <!-- Animated -->
+    <div class="animated fadeIn">
+
+        <div class="card">
+            @using (Html.BeginForm("VehicleMake", "Vehicle", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                <div class="card-header">
+                    <strong>Vehicle Make Form</strong>
+                </div>
+                <div class="card-body card-block">
+
+                    @*<div class="form-group row">
+                        <label>Makes:</label>
+                        <div class="col-md-9">
+                            @Html.Editor("make", new { htmlAttributes = new { @class = "form-control", @placeholder = "E.g. Toyota, Hiace" } })
+
+                        </div>
+                    </div>*@
+                    <div class="form-group">
+                        <label class=" form-control-label">Make code</label>
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.code, new { @class = "form-control", Styles = "border-radius:50%", required = "required" })
+                            @Html.ValidationMessageFor(m => m.code, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class=" form-control-label">Vehicle Make/Model</label>
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.make, new { @class = "form-control", Styles = "border-radius:50%", @placeholder = "E.g. Toyota, Hiace", required = "required" })
+                            @Html.ValidationMessageFor(m => m.make, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body card-block">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="col-sm-10 text-center" style="line-height:2em">
+                                <input type="submit" value="Submit" id="submitButton" class="btn btn-primary btn-lg pull-center" />
+                            </div>
+                            @*<input class="form-control">*@
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#make").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Vehicle/VehicleMake",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.id, value: item.make };
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "", results: ""
+            }
+        });
+    })
+</script>  

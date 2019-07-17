@@ -1,0 +1,277 @@
+﻿@using Microsoft.AspNet.Identity
+
+
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                    </li>
+                    <li class="menu-title">UI elements</li><!-- /.menu-title -->
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Members</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-puzzle-piece"></i>
+                            <li>@Html.ActionLink("Add Member", "Index", "Member")</li>
+
+                            <li><i class="fa fa-bars"></i>
+                            <li>@Html.ActionLink("Members Summary", "Index", "FetchMemberData")</li>
+                            <li>@Html.ActionLink("Share Capital Summary", "getShares", "Member")</li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Sacco Staff Members</a>
+                        <ul class="sub-menu children dropdown-menu">
+
+                            <li><i class="fa fa-puzzle-piece"></i>
+                            <li>@Html.ActionLink("Add Staff Member", "Index", "Staff")</li>
+                            <li><i class="fa fa-puzzle-piece"></i>
+                            <li>@Html.ActionLink("Staff Summary", "getStaffs", "Staff")</li>
+
+                        </ul>
+                    </li>
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Licences Details</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-bars"></i>
+                            <li>@Html.ActionLink("Add Vehicle Licence Details", "VehicleLicense", "Insuarance")</li>
+                            <li>@Html.ActionLink("Add Individual Licence Details", "IndidualLicence", "Insuarance")</li>
+                            <li>@Html.ActionLink("Licences Details", "Index", "GetCertifications")</li>
+
+
+                        </ul>
+                    </li>
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i> Insurance Details</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-bars"></i>
+                            <li>@Html.ActionLink("Add Vehicle Insurance Details", "Insurance", "Insuarance")</li>
+                            <li>@Html.ActionLink("Insurance Details", "Insurance", "GetCertifications")</li>
+
+                        </ul>
+                    </li>
+
+
+
+
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Committee</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-bars"></i>
+                            <li>@Html.ActionLink("Create New", "CreateCommittee", "Committe")</li>
+                            <li><i class="fa fa-bars"></i>
+                            <li>@Html.ActionLink("Committee Summary", "GetCommittee", "Committe")</li>
+                        </ul>
+                    </li>
+
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Sacco Expense</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-bars"></i>
+                            <li>@Html.ActionLink("Add New Expense", "Index", "SaccoExpense")</li>
+                            <li>@Html.ActionLink("Sacco Expense Summary", "GetSaccoExpenses", "SaccoExpense")</li>
+
+                        </ul>
+                    </li>
+
+
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Vehicle Details</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-table"></i>
+                            <li>@Html.ActionLink("Add Vehicle", "Vehicle", "Vehicle")</li>
+                            <li>@Html.ActionLink("Add", "Test", "Vehicle")</li>
+                            <li><i class="fa fa-table"></i>@Html.ActionLink("Vehicle Summary", "Index", "FetchVehicleData")</li>
+                        </ul>
+                    </li>
+
+
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Driver&Conductor Management</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-table"></i>
+                            <li><i class="fa fa-table"></i>@Html.ActionLink("Assign Vehicle to Driver or Conductor", "driversConductor", "Vehicle")</li>
+                            <li><i class="fa fa-table"></i>
+                            <li><i class="fa fa-table"></i>@Html.ActionLink(" Driver/Conductor Vehicle Assignment Summary ", "getDrivers_conductors", "FetchVehicleData")</li>
+
+                        </ul>
+                    </li>
+
+
+                    @*<li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Certifications Details</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-table"></i>
+
+                            <li><i class="fa fa-table"></i>@Html.ActionLink("Add Licence Configuration", "Certification", "Vehicle")</li>
+                            <li><i class="fa fa-table"></i>@Html.ActionLink("Add Driver & Conductor Licences", "DriversConductors", "Vehicle")</li>
+                            <li><i class="fa fa-table"></i> @Html.ActionLink("Certification Summary", "getCertification", "FetchVehicleData")</li>
+
+                        </ul>
+                    </li>*@
+
+
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Contribution Details</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-th"></i>
+                            <li>@Html.ActionLink("Add Contributions", "Contribution", "Contribution")</li>
+                            <li>@Html.ActionLink("Contributions Summary", "getContributions", "Contribution")</li>
+                        </ul>
+                    </li>
+
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Saving Details</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-fort-awesome"></i>
+                            <li>@Html.ActionLink("Add Savings", "Tabs", "Home")</li>
+                            <li>@Html.ActionLink("Add Daily Savings", "DailySavings", "Home")</li>
+                            <li><i class="menu-icon ti-themify-logo"></i> @Html.ActionLink("Daily Savings Summary", "DailySummary", "FetchData")</li>
+                        </ul>
+                    </li>
+
+
+
+
+
+
+
+
+                    @if (Request.IsAuthenticated)
+                    {
+
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li>
+                                <a href="#"> <i class="menu-icon ti-email"></i>Set Ups </a>
+                            </li>
+                            @*<ul class="nav navbar-nav">*@
+                            <li class="menu-item-has-children dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Set Ups</a>
+                                <ul class="sub-menu children dropdown-menu">
+                                    <li><i class="fa fa-id-badge"> </i></li>
+                                    <li>@Html.ActionLink("Add Member Types", "memberType", "Member")</li>
+                                    <li><i class="fa fa-id-badge"> </i></li>
+                                    <li>@Html.ActionLink("Add Share Capital", "MemberShares", "Member")</li>
+                                    <li><i class="menu-icon fa fa-line-chart"></i></li>
+                                    <li>@Html.ActionLink("Add Bank Codes", "Bank", "Vehicle")</li>
+                                    <li><i class="menu-icon fa fa-line-chart"></i></li>
+                                    <li>@Html.ActionLink("Add Bank Branch", "BankBranch", "Vehicle")</li>
+                                    <li><i class="menu-icon fa fa-line-chart"></i></li>
+                                    <li>@Html.ActionLink("Add Route Types", "routeType", "Vehicle")</li>
+                                    <li><i class="menu-icon fa fa-line-chart"></i></li>
+                                    <li>@Html.ActionLink("Add Insurer", "Insurer", "Insuarance")</li>
+                                    <li><i class="menu-icon fa fa-line-chart"></i></li>
+                                    <li>@Html.ActionLink("Add PolicyType", "InsurancePolicyType", "Insuarance")</li>
+
+                                    <li><i class="menu-icon fa fa-line-chart"></i></li>
+                                    <li>@Html.ActionLink("Add Licence Issuer", "Licence_Issuer", "Insuarance")</li>
+                                    <li><i class="menu-icon fa fa-line-chart"></i></li>
+                                    <li>@Html.ActionLink("Add Licence Type", "Licence_Type", "Insuarance")</li>
+
+                                    <li><i class="menu-icon fa fa-area-chart"></i></li>
+                                    <li>@Html.ActionLink("Add Contribution Type", "Contribution_Type", "Contribution")</li>
+                                    <li><i class="menu-icon fa fa-pie-chart"></i></li>
+                                    <li>@Html.ActionLink("Add Contribution Name", "ConType", "Contribution")</li>
+
+                                    <li><i class="fa fa-table"></i>@Html.ActionLink("Add Vehicle make", "VehicleMake", "Vehicle")</li>
+                                    <li><i class="fa fa-table"></i>@Html.ActionLink("Add Vehicle model", "VehicleModel", "Vehicle")</li>
+                                    <li><i class="fa fa-table"></i>@Html.ActionLink("Add Vehicle Configuration", "VehicleConfiguration", "Vehicle")</li>
+
+
+                                    <li><i class="menu-icon fa fa-street-view"></i></li>
+                                    <li>@Html.ActionLink("Add Loan Type", "LoanType", "Home")</li>
+                                    <li><i class="menu-icon fa fa-sign-in"></i></li>
+                                    <li> @Html.ActionLink("Revenue Types", "RevenueTypes", "Home")</li>
+                                    <li><i class="menu-icon fa fa-sign-in"></i></li>
+                                    <li> @Html.ActionLink("Committe Position Types", "Index", "Committe")</li>
+
+                                    <li><i class="menu-icon fa fa-sign-in"></i></li>
+                                    <li> @Html.ActionLink(" Add Staff Position Types", "staffPosition", "Staff")</li>
+                                </ul>
+                            </li>
+                            @*</ul>*@
+
+                        }
+
+                    }
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Loan Details</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-map-o"></i>
+                            <li>@Html.ActionLink("Loan Payment", "LoanPayment", "Home")</li>
+                            <li><i class="menu-icon fa fa-street-view"></i>@Html.ActionLink("Loan Payment Summary", "getUpdatedLoanDetails", "FetchData")</li>
+
+                        </ul>
+                    </li>
+
+                    <li class="menu-title">Extras</li><!-- /.menu-title -->
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Revenue Details</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-sign-in"></i>
+                            <li>@Html.ActionLink("Add Revenue", "Revenue", "Home")</li>
+                            <li><i class="menu-icon fa fa-paper-plane"></i> @Html.ActionLink("Revenue Summary", "Index", "FetchData")</li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </aside>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

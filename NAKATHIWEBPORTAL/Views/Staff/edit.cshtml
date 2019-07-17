@@ -1,0 +1,461 @@
+﻿@model NAKATHIWEBPORTAL.Models.StaffViewModel
+
+<script src="~/global_assets/js/demo_pages/form_wizard.js"></script>
+
+<script src="~/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+<script src="~/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+<script src="~/global_assets/js/demo_pages/datatables_basic.js"></script>
+
+<script src="~/global_assets/js/plugins/forms/wizards/steps.min.js"></script>
+<script src="~/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+<script src="~/global_assets/js/plugins/forms/styling/uniform.min.js"></script>
+<script src="~/global_assets/js/plugins/forms/inputs/inputmask.js"></script>
+<script src="~/global_assets/js/plugins/forms/validation/validate.min.js"></script>
+<script src="~/global_assets/js/plugins/extensions/cookie.js"></script>
+
+
+<div style="line-height:4em;padding-bottom:1em;">
+    @if (TempData["success"] != null)
+    {
+        <div class="alert alert-success alert-dismissable" id="alert">
+            <strong>@TempData["success"]</strong>
+        </div>
+    }
+</div>
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-success alert-dismissable" id="alert">
+        <strong>@TempData["error"]</strong>
+    </div>
+}
+
+<div class="card">
+    <div class="card-header header-elements-inline">
+        <h6 class="card-title">Member Details</h6>
+
+    </div>
+    @*<div class="col-md-6">
+            <ul class="nav nav-tabs nav-tabs-bottom ">
+                <li class="nav-item"><a href="#bottom-justified-tab1" class="nav-link active" data-toggle="tab">Personal Information</a></li>
+                <li class="nav-item"><a href="#bottom-justified-tab2" class="nav-link" data-toggle="tab">Vehicles</a></li>
+                <li class="nav-item"><a href="#bottom-justified-tab2" class="nav-link" data-toggle="tab">Certification</a></li>
+
+            </ul>
+        </div>*@
+
+    <div class="card-body">
+
+
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="bottom-justified-tab1">
+
+                @using (Html.BeginForm("edit", "Staff", FormMethod.Post, new { enctype = "multipart/form-data", @class = "wizard-form  steps-enable-all", @id = "myForm" }))
+                {
+                    
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+
+                        <h6>Staff Personal Details</h6>
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">First Name:</label>
+                                        <div class="col-lg-6">
+                                            @Html.TextBoxFor(m => m.first_name, new { @class = "form-control", Styles = "border-radius:50%", @placeholder = "Enter First name", required = "required" })
+                                            @Html.ValidationMessageFor(m => m.first_name, "", new { @class = "text-danger" })
+                                            @* <input type="text" name="name" class="form-control" placeholder="John">*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Surname:</label>
+                                        <div class="col-lg-6">
+                                            @Html.TextBoxFor(m => m.surname, new { @class = "form-control", Styles = "border-radius:50%", @placeholder = "Enter surname", required = "required" })
+                                            @Html.ValidationMessageFor(m => m.surname, "", new { @class = "text-danger" })
+                                            @* <input type="text" name="name" class="form-control" placeholder="Surname">*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Last Name:</label>
+                                        <div class="col-lg-6">
+                                            @Html.TextBoxFor(m => m.last_name, new { @class = "form-control", Styles = "border-radius:50%", @placeholder = "Enter Last name", required = "required" })
+                                            @Html.ValidationMessageFor(m => m.last_name, "", new { @class = "text-danger" })
+                                            @* <input type="text" name="name" class="form-control" placeholder="Doe">*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Email Address:</label>
+                                        <div class="col-lg-6">
+                                            @Html.TextBoxFor(m => m.email, new { @class = "form-control", @type = "email", Styles = "border-radius:50%", @placeholder = "Enter valid email", required = "required" })
+                                            @Html.ValidationMessageFor(m => m.email, "", new { @class = "text-danger" })
+                                            @*<input type="email" name="email" class="form-control" placeholder="your@email.com">*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Id No:</label>
+                                        <div class="col-lg-6">
+                                            @Html.TextBoxFor(m => m.id_number, new { @class = "form-control", min = "0", Styles = "border-radius:50%", @placeholder = "Enter Id Number", required = "required" })
+                                            @Html.ValidationMessageFor(m => m.id_number, "", new { @class = "text-danger" })
+                                            @*<input type="text" name="name" class="form-control" placeholder="12345678">*@
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Select Staff Position:</label>
+                                        <div class="col-lg-6">
+                                            @Html.DropDownListFor(m => m.Sacco_Staff_Position_id, ViewBag.List as SelectList, "--Please select staff position--", new { @class = "form-control", required = "required" })
+                                            @Html.ValidationMessageFor(m => m.Sacco_Staff_Position_id, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">KRA PIN #:</label>
+                                        <div class="col-lg-6">
+                                            @Html.TextBoxFor(m => m.pinNumber, new { @class = "form-control", Styles = "border-radius:50%", @placeholder = "Enter KRA Number", required = "required" })
+                                            @Html.ValidationMessageFor(m => m.pinNumber, "", new { @class = "text-danger" })
+                                            @*<input type="email" name="email" class="form-control" placeholder="KRA PIN">*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">PHONE NO#:</label>
+                                        <div class="col-lg-6">
+                                            @Html.TextBoxFor(m => m.phone_number, new { @class = "form-control", min = "0", Styles = "border-radius:50%", @placeholder = "Enter Phone Number", required = "required" })
+                                            @Html.ValidationMessageFor(m => m.phone_number, "", new { @class = "text-danger" })
+                                            @* <input type="text" name="tel" class="form-control" placeholder="O711000222" data-mask="">*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Date of Birth:</label>
+                                        <div class="col-lg-6">
+                                            @Html.TextBoxFor(m => m.DOB, new { @class = "form-control", @type = "date", Styles = "border-radius:50%", @placeholder = "Enter Date Of Birth", required = "required" })
+                                            @Html.ValidationMessageFor(m => m.DOB, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Profile photo:</label>
+                                        <div class="col-lg-6">
+                                            <input type="file" name="ImageFile" class="form-input-styled" />
+                                            <span class="form-text text-muted">Accepted formats: pdf, doc. Max file size 2Mb</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </fieldset>
+
+                        <h6>Place of Residence</h6>
+                        <fieldset>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label">County:</label>
+                                    <div class="col-lg-6">
+                                        @Html.TextBoxFor(m => m.county_of_residence, new { @class = "form-control", placeholder = "county", Styles = "border-radius:50%", required = "required" })
+                                        @Html.ValidationMessageFor(m => m.county_of_residence, "", new { @class = "text-danger" })
+                                        @* <input type="text" name="university" placeholder="" class="form-control">*@
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label">Sub county:</label>
+                                    <div class="col-lg-6">
+                                        @Html.TextBoxFor(m => m.subCounty_of_residence, new { @class = "form-control", placeholder = "sub-county", Styles = "border-radius:50%", required = "required" })
+                                        @Html.ValidationMessageFor(m => m.subCounty_of_residence, "", new { @class = "text-danger" })
+                                        @*<input type="text" name="degree-level" placeholder="" class="form-control">*@
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label">Estate:</label>
+                                    <div class="col-lg-6">
+                                        @Html.TextBoxFor(m => m.estate_of_residence, new { @class = "form-control", placeholder = "estate", Styles = "border-radius:50%", required = "required" })
+                                        @Html.ValidationMessageFor(m => m.estate_of_residence, "", new { @class = "text-danger" })
+                                        @*<input type="text" name="degree-level" placeholder="" class="form-control">*@
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label">Address:</label>
+                                    <div class="col-lg-6">
+                                        @Html.TextBoxFor(m => m.member_postalAddress, new { @class = "form-control", placeholder = "address", Styles = "border-radius:50%", required = "required" })
+                                        @Html.ValidationMessageFor(m => m.member_postalAddress, "", new { @class = "text-danger" })
+                                        @* <input type="text" name="degree-level" placeholder="" class="form-control">*@
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </fieldset>
+
+                        <h6>Next of Kin Details</h6>
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <legend class="font-weight-semibold"><i class="icon-reading mr-2"></i> 1st Kin Details</legend>
+
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label">Name:</label>
+                                            <div class="col-lg-6">
+                                                @Html.TextBoxFor(m => m.first_next_of_kin, new { @class = "form-control", Styles = "border-radius:50%", @placeholder = "first kin phone", required = "required" })
+                                                @Html.ValidationMessageFor(m => m.first_next_of_kin, "", new { @class = "text-danger" })
+                                                @*<input type="text" name="name" class="form-control" placeholder="John">*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label">Mobile:</label>
+                                            <div class="col-lg-6">
+
+                                                @Html.TextBoxFor(m => m.first_next_of_kin_phone_number, new { @class = "form-control", placeholder = "first kin phone number", min = "0", Styles = "border-radius:50%", required = "required" })
+                                                @Html.ValidationMessageFor(m => m.first_next_of_kin_phone_number, "", new { @class = "text-danger" })
+                                                @*<input type="text" name="name" class="form-control" placeholder="">*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label">Address :</label>
+                                            <div class="col-lg-6">
+                                                @Html.TextBoxFor(m => m.first_next_of_kin_postalAddress, new { @class = "form-control", placeholder = "first kin address", Styles = "border-radius:50%", required = "required" })
+                                                @Html.ValidationMessageFor(m => m.first_next_of_kin_postalAddress, "", new { @class = "text-danger" })
+                                                @*<input type="text" name="name" class="form-control" placeholder="">*@
+                                            </div>
+                                        </div>
+
+
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <legend class="font-weight-semibold"><i class="icon-reading mr-2"></i>2nd Kin Details</legend>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label">Name:</label>
+                                            <div class="col-lg-6">
+                                                @Html.TextBoxFor(m => m.second_next_of_kin, new { @class = "form-control", Styles = "border-radius:50%", @placeholder = "Enter second_next_of_kin", required = "required" })
+                                                @Html.ValidationMessageFor(m => m.second_next_of_kin, "", new { @class = "text-danger" })
+                                                @*<input type="text" name="name" class="form-control" placeholder="John">*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label">Mobile:</label>
+                                            <div class="col-lg-6">
+                                                @Html.TextBoxFor(m => m.second_next_of_kin_phone_number, new { @class = "form-control", placeholder = "second kin phone number", min = "0", Styles = "border-radius:50%", required = "required" })
+                                                @Html.ValidationMessageFor(m => m.second_next_of_kin_phone_number, "", new { @class = "text-danger" })
+                                                @*<input type="text" name="name" class="form-control" placeholder="">*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label">Address :</label>
+                                            <div class="col-lg-6">
+
+                                                @Html.TextBoxFor(m => m.second_next_of_kin_postalAddress, new { @class = "form-control", placeholder = "Second kin address", Styles = "border-radius:50%", required = "required" })
+                                                @Html.ValidationMessageFor(m => m.second_next_of_kin_postalAddress, "", new { @class = "text-danger" })
+                                                @*<input type="text" name="name" class="form-control" placeholder="">*@
+                                            </div>
+                                        </div>
+
+
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <legend class="font-weight-semibold"><i class="icon-reading mr-2"></i>3rd Kin Details</legend>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label">Name:</label>
+                                            <div class="col-lg-6">
+                                                @Html.TextBoxFor(m => m.third_next_of_kin, new { @class = "form-control", Styles = "border-radius:50%", @placeholder = "Enter Third_next_of_kin", required = "required" })
+                                                @Html.ValidationMessageFor(m => m.third_next_of_kin, "", new { @class = "text-danger" })
+                                                @* <input type="text" name="name" class="form-control" placeholder="John">*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label">Mobile :</label>
+                                            <div class="col-lg-6">
+                                               
+                                                @Html.TextBoxFor(m => m.third_next_of_kin_phone_number, new { @class = "form-control", placeholder = "third kin phone number", min = "0", Styles = "border-radius:50%", required = "required" })
+                                                @Html.ValidationMessageFor(m => m.third_next_of_kin_phone_number, "", new { @class = "text-danger" })
+
+                                                @*<input type="text" name="name" class="form-control" placeholder="">*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label">Address :</label>
+                                            <div class="col-lg-6">
+
+                                                @*<input type="text" name="name" class="form-control" placeholder="">*@
+                                                @Html.TextBoxFor(m => m.third_next_of_kin_postalAddress, new { @class = "form-control", placeholder = "Third kin address", Styles = "border-radius:50%", required = "required" })
+                                                @Html.ValidationMessageFor(m => m.third_next_of_kin_postalAddress, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <legend class="font-weight-semibold"><i class="icon-reading mr-2"></i>Beneficiaries</legend>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label">1st Beneciary:</label>
+                                            <div class="col-lg-6">
+
+                                                @Html.TextBoxFor(m => m.first_beneficiary, new { @class = "form-control", placeholder = "first", Styles = "border-radius:50%", required = "required" })
+                                                @Html.ValidationMessageFor(m => m.first_beneficiary, "", new { @class = "text-danger" })
+                                                @* <input type="text" name="name" class="form-control" placeholder="">*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label">2nd Beneciary:</label>
+                                            <div class="col-lg-6">
+                                                @Html.TextBoxFor(m => m.second_beneficiary, new { @class = "form-control", Styles = "border-radius:50%", required = "required" })
+                                                @Html.ValidationMessageFor(m => m.second_beneficiary, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label">3rd Beneciary:</label>
+                                            <div class="col-lg-6">
+                                                @Html.TextBoxFor(m => m.third_beneficiary, new { @class = "form-control", placeholder = "Third", Styles = "border-radius:50%", required = "required" })
+                                                @Html.ValidationMessageFor(m => m.third_beneficiary, "", new { @class = "text-danger" })
+                                                @*<input type="text" name="name" class="form-control" placeholder="">*@
+
+
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+                        </fieldset>
+
+                        <h6>Bank Details</h6>
+                        <fieldset>
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class=" form-control-label">Bank Name </label>
+                                        @Html.DropDownListFor(m => m.bank_code, ViewBag.List1 as SelectList, "--Please select Bank Name--", new { @class = "form-control", required = "required" })
+
+                                        @Html.ValidationMessageFor(m => m.bank_code, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class=" form-control-label">Bank Branch </label>
+                                        @Html.DropDownListFor(m => m.bankbranch_id, new SelectList(""), "--Please select Bank Branch--", new { @class = "form-control", required = "required" })
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class=" form-control-label">Bank Account No </label>
+                                        @Html.TextBoxFor(m => m.bank_accountNumber, new { @class = "form-control", @type = "number", min = "0", Styles = "border-radius:50%", required = "required" })
+                                        @Html.ValidationMessageFor(m => m.bank_accountNumber, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </fieldset>
+
+
+
+
+
+
+                    }
+
+                    <!-- /saving state -->
+
+                </div>
+
+
+            <div class="tab-pane fade" id="bottom-justified-tab2">
+
+            </div>
+
+            <div class="tab-pane fade" id="bottom-justified-tab3">
+
+            </div>
+
+            <div class="tab-pane fade" id="bottom-justified-tab4">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<script>
+
+    var $alert = $('.alert');
+    if ($alert.length) {
+        setTimeout(function () {
+            $alert.fadeIn(1000, 0);
+            $alert.fadeOut("slow");
+        }, 3000)
+
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        $("#bank_code").change(function () {
+            $.get("/Member/GetBankBranches", { bank_code: $("#bank_code").val() }, function (data) {
+                $("#bankbranch_id").empty();
+                $.each(data, function (index, row) {
+                    $("#bankbranch_id").append("<option value ='" + row.id + "'>" + row.branchname + "</option>")
+                });
+            });
+        });
+    });
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

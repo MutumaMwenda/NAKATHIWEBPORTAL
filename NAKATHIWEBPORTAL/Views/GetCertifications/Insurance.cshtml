@@ -1,0 +1,166 @@
+﻿
+@model IEnumerable<NAKATHIWEBPORTAL.Models.InsuranceVm>
+
+
+
+<script src="~/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+<script src="~/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+<script src="~/global_assets/js/demo_pages/datatables_basic.js"></script>
+
+
+
+
+<div class="navbar navbar-expand-lg navbar-light " style="margin-bottom:16px">
+
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href="~/Insuarance/Insurance" class="navbar-nav-link  text-warning d-none d-md-block">
+                <i class="icon-add"></i>
+                Create Insurance
+
+            </a>
+        </li>
+    </ul>
+
+    
+
+
+
+</div>
+
+<!-- /theme JS files -->
+<!-- Basic datatable -->
+<!-- /main navbar -->
+
+
+<div class="card">
+    <div class="card-header header-elements-inline">
+        <h5 class="card-title text-center">Insurance</h5>
+
+        <div class="header-elements">
+            <div class="list-icons">
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <table class="table datatable-basic">
+        <thead>
+            <tr>
+                <th>
+                    Reg No
+                </th>
+                <th>
+                   
+                    Insurer
+                </th>
+                <th>
+                    Policy
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.policyNumber)
+                    </th>*@
+                @*<th>
+                        @Html.DisplayNameFor(model => model.vehicle_Inspection_date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.next_inspection_date)
+                    </th>*@
+                <th>
+                    RSLS No
+                </th>
+                <th>
+                    RSLS No Expiry Date
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.active_from)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.expiryDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Photo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.created_at)*@
+                    @*</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.updated_at)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.created_by)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.updated_by)
+                        </th>
+                        <th></th>*@
+            </tr>
+        </thead>
+
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.reg_no)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.insurer_name)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.insurance_policytype_name)
+                        </td>*@
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.policyNumber)
+                        </td>*@
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.vehicle_Inspection_date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.next_inspection_date)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RSLStickernumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RSLStickernumberexpiry_date)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.active_from)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.expiryDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Photo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.created_at)
+                        </td>*@
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.updated_at)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.created_by)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.updated_by)
+                            </td>*@
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+
+
+    </table>
+</div>
+<!-- /basic datatable -->

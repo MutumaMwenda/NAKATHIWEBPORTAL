@@ -1,0 +1,87 @@
+﻿@model NAKATHIWEBPORTAL.ViewModel.CommitteeApprovalVM
+
+<div  tabindex="-1" role="dialog" aria-hidden="true">
+    <div  role="document">
+        <div >
+            <div class="header">
+                <h4 class="title">
+                    Loan Details
+                    <small class="m-0 text-muted">
+
+                    </small>
+                </h4>
+
+               
+            </div>
+            <div class="body">
+
+
+                <div class="row">
+                    <div class="col-md">
+                        Applicant Name: @Html.DisplayFor(model => model.name)
+                    </div>
+
+                    <div class="col-md">
+                        Loan  Amount: @Html.DisplayFor(model => model.amount)
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md">
+                        Loan Type: @Html.DisplayFor(model => model.@type)
+                    </div>
+
+                    <div class="col-md">
+                        <p>Date  Created:@Html.DisplayFor(model => model.date_created)</p>
+                    </div>
+                </div>
+
+
+                <div style="text-align:center">
+                    <u> <h4>Guarantors</h4></u>
+
+                </div>
+                @for (int i = 0; i < Model.list1.Count; i++)
+                {
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md">
+                                Name: @Html.DisplayFor(model => Model.list1[i].name)
+                            </div>
+
+                            <div class="col-md">
+                                Amount: @Html.DisplayFor(mmodel => Model.list1[i].amount)
+                            </div>
+                            @if (Model.list1[i].status == 1)
+                            {
+                                <div class="col-md">
+                                    <span class="badge badge-success">Approved</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-md">
+                                    <span class="badge badge-danger">Rejected</span>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+
+                }
+            <div class="row">
+                <div>
+                    @Html.ActionLink("Approve", "Approve", new { id = Model.id })
+                </div>
+              
+                <div>
+                    @Html.ActionLink("Reject", "Reject", new { id = Model.id })
+                </div>
+               
+            </div>
+
+            </div>
+
+        </div>
+
+    </div> </div>

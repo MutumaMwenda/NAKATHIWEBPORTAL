@@ -1,0 +1,237 @@
+﻿@model NAKATHIWEBPORTAL.Models.ContributionVm
+
+
+
+    <div class="card">
+
+
+        <div style="line-height:4em;padding-bottom:1em;">
+            @if (TempData["success"] != null)
+            {
+                <div class="alert alert-success alert-dismissable" id="alert">
+                    <strong>@TempData["success"]</strong>
+                </div>
+            }
+        </div>
+        @if (TempData["error"] != null)
+        {
+            <div class="alert alert-success alert-dismissable" id="alert">
+                <strong>@TempData["error"]</strong>
+            </div>
+        }
+        <div class="card-body">
+
+
+
+            <div class="horizontal-form-elements">
+
+                @using (Html.BeginForm("EditContribution", "Contribution", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-lg-12">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6" style="margin-bottom:5px;">
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label  font-weight-bold">Member ID :</label>
+                                            <div class="col-lg-6">
+                                                @Html.TextBoxFor(m => m.member_id, new { @class = "form-control", Styles = "border-radius:50%", required = "required" })
+                                                @Html.ValidationMessageFor(m => m.member_id, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label  font-weight-bold">Reg Number :</label>
+                                            <div class="col-lg-6">
+                                                @Html.TextBoxFor(m => m.reg_no, new { @class = "form-control", Styles = "border-radius:50%", required = "required" })
+                                                @Html.ValidationMessageFor(m => m.reg_no, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label  font-weight-bold">Amount Deposit:</label>
+                                            <div class="col-lg-6">
+                                                @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control", @onKeyUp = "sum()" } })
+                                                @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    <table class="table ">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.id)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.name)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.amount)
+                            </th>
+                        </tr>
+
+                        @for (int i = 0; i < Model.list1.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(model => Model.list1[i].id, new { htmlAttributes = new { @class = "form-control" } })
+
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => Model.list1[i].name, new { htmlAttributes = new { @class = "form-control" } })
+
+                                </td>
+                                <td>
+                                    @Html.HiddenFor(model => Model.list1[i].con_type_name, new { htmlAttributes = new { @class = "form-control" } })
+
+
+                                </td>
+                                @if (Model.list1[i].contribution_type == 0)
+                                {
+                                    <td>
+                                        @Html.EditorFor(model => Model.list1[i].amount, new { htmlAttributes = new { @class = " example form-control", @onKeyUp = "sum();" } })
+                                        @Html.ValidationMessageFor(model => Model.list1[i].amount, "", new { @class = "text-danger" })
+                                    </td>
+
+                                }
+                                else
+                                {
+
+                                    <td>
+                                        @Html.EditorFor(model => Model.list1[i].amount, new { htmlAttributes = new { @class = "example form-control", @readonly = "readonly" } })
+
+                                    </td>
+                                }
+
+
+
+                            </tr>
+                        }
+
+                    </table>
+
+                    <div class="row">
+                        <div class="">
+
+                            <div class="form-group form-inline pull-right">
+                                <label class="text-bold control-label text-sm">Total</label>
+                                @*@Html.LabelFor(model => model.totalamount, htmlAttributes: new { @style = "font-weight:bold;", @class = " text-bold control-label text-sm" })*@
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" value="" id="total">
+                                    @*@Html.EditorFor(model => model.totalamount, new { htmlAttributes = new { @class = "form-contr", @id = "total", @onKeyUp = "sum()" } })*@
+                                    @*@Html.ValidationMessageFor(model => model.totalamount, "", new { @class = "text-danger" })*@
+                                </div>
+                            </div>
+
+                            <div></div><div></div>
+
+
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+
+
+                    </div>
+                    <div class="form-group pull-right" align="center">
+                        <button type="submit" class="btn btn-primary" OnClientClick='return userValid();'>Save <i class="icon-paperplane ml-2"></i></button>
+
+                    </div>
+                }
+            </div>
+                } </div>
+    </div>
+    <!-- /# card -->
+</div>
+
+<script type='text/javascript'>
+
+    $("#inputState").change(function () {
+
+        var selected_option = $('#inputState').val();
+
+        if (selected_option === '1') {
+            $("#idnumber").show();
+            $("#name").hide();
+        }
+        if (selected_option === '2') {
+            $("#name").show();
+            $("#idnumber").hide();
+        }
+    });
+
+
+    function sum() {
+        // Your total
+        var total = 0;
+
+        // Your textboxes to sum
+        var textboxes = document.getElementsByClassName('example');
+
+        // Iterate through your elements and parse their values
+        for (var i = 0; i < textboxes.length; i++) {
+            // Add this to your total
+
+
+            if (!isNaN(textboxes[i].value) && textboxes[i].value != 0) {
+                total += parseFloat(textboxes[i].value);
+            }
+        }
+
+
+
+        // Output your result
+        document.getElementById('total').value = total.toString();
+    }
+
+</script>
+<script>
+    $(document).ready(function () {
+        var current_url = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+        $("a[href='" + current_url + "']").parent().addClass("active");
+        console.log(current_url);
+
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].style.backgroundColor = "";
+        }
+
+
+
+        $("a[href='" + current_url + "']").filter('a[class="tablink"]').css("background-color", "#abebc6");
+        //$('body').css('background-color', 'blue !important');
+    });
+
+    $(document).ready(function () {
+        var full_path = location.href.split("#")[0];
+        console.log(full_path);
+
+
+        $("a").each(function () {
+            var $this = $(this);
+            if ($this.prop("href").split("#")[0] == full_path) {
+                $this.addClass("active");
+            }
+        });
+    });
+</script>
+<!-- /# column -->

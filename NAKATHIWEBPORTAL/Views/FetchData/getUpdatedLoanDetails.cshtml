@@ -1,0 +1,65 @@
+﻿@model IEnumerable<NAKATHIWEBPORTAL.ViewModel.LoanPaymentVM>
+
+@{
+    ViewBag.Title = "getUpdatedLoanDetails";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="http://codeseven.github.com/toastr/toastr.js"></script>
+<link href="http://codeseven.github.com/toastr/toastr.css" rel="stylesheet">
+<script src="https://use.fontawesome.com/d94f445648.js"></script>
+
+
+<table class="table table-striped table-hover table-bordered" id="LoanTable">
+    <thead>
+        <tr>
+            <th>Loan Name</th>
+            <th>Amount Paid To Date</th>
+            <th>Loan Balance</th>
+            <th>Cash Paid By</th>
+            <th>Cash Received By</th>
+
+            <th>Date Paid</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+           
+
+            <td>
+                @Html.DisplayFor(modelItem => item.amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.amt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.paid_by)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.received_by)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date_paid)
+            </td>
+
+        </tr>
+        }
+    </tbody>
+  
+</table>
+
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section scripts{
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $('#LoanTable').DataTable();
+
+    </script>
+
+}
+

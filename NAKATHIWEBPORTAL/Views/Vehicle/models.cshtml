@@ -1,0 +1,95 @@
+﻿@model IEnumerable<NAKATHIWEBPORTAL.ViewModel.VehicleModelVM>
+
+
+<script src="~/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+<script src="~/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+<script src="~/global_assets/js/demo_pages/datatables_basic.js"></script>
+
+<div class="navbar navbar-expand-lg navbar-light " style="margin-bottom:16px">
+
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href="~/vehicle/vehiclemodel" class="navbar-nav-link  text-primary d-none d-md-block">
+                <i class="icon-add"></i>
+                Create
+
+            </a>
+        </li>
+    </ul>
+
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href="#" class="navbar-nav-link  text-primary d-none d-md-block">
+                <i class="icon-trash"></i>
+                Delete Model
+            </a>
+        </li>
+    </ul>
+
+
+
+</div>
+
+
+
+
+
+<!-- Basic datatable -->
+<!-- /main navbar -->
+
+<div class="card">
+
+    <div class="card-header header-elements-inline">
+        <h5 class="card-title text-center">Vehicle Models</h5>
+
+        <div class="header-elements">
+            <div class="list-icons">
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <table class="table datatable-basic">
+        <thead>
+            <tr>
+
+                <th>
+                    Id
+                </th>
+                <th>
+                    Make
+                </th>
+                <th>
+                    Model
+                </th>
+
+             
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.makename)
+                    </td>
+                    <td>
+                        <a href="@Url.Action( "Edit",new { id = item.id })"> @Html.DisplayFor(modelItem => item.modelname)</a>
+                    </td>
+
+                  
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+

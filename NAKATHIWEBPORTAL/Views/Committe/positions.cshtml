@@ -1,0 +1,85 @@
+﻿@model IEnumerable<NAKATHIWEBPORTAL.Models.Committee_Position>
+
+
+<script src="~/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+<script src="~/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+<script src="~/global_assets/js/demo_pages/datatables_basic.js"></script>
+
+<div class="navbar navbar-expand-lg navbar-light " style="margin-bottom:16px">
+
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href="~/Committe" class="navbar-nav-link  text-primary d-none d-md-block">
+                <i class="icon-add"></i>
+                Create
+
+            </a>
+        </li>
+    </ul>
+
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href="#" class="navbar-nav-link  text-primary d-none d-md-block">
+                <i class="icon-trash"></i>
+                Delete Position
+            </a>
+        </li>
+    </ul>
+
+
+
+</div>
+
+<!-- Basic datatable -->
+<!-- /main navbar -->
+
+<div class="card">
+
+    <div class="card-header header-elements-inline">
+        <h5 class="card-title text-center">Committee Positions</h5>
+
+        <div class="header-elements">
+            <div class="list-icons">
+
+            </div>
+        </div>
+    </div>
+
+
+    <table class="table datatable-basic">
+        <thead>
+            <tr>
+
+                <th>
+                    S/N
+                </th>
+
+                <th>
+                    Name
+                </th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model.Select((x, i) => new { Data = x, Index = i + 1 }))
+            {
+                <tr>
+                    <td>
+                        @item.Index
+                    </td>
+
+                    <td>
+                        <a href="@Url.Action( "Edit",new { id = item.Data.id })"> @Html.DisplayFor(modelItem => item.Data.name)</a>
+
+                    </td>
+
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+

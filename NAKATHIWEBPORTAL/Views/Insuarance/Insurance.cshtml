@@ -1,0 +1,224 @@
+﻿@model NAKATHIWEBPORTAL.Models.Insurance
+
+
+<div class="card">
+    <div class="card-header header-elements-inline">
+        <h6 class="card-title">Insurance Details</h6>
+
+    </div>
+
+    <div class="card-body">
+
+
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="bottom-justified-tab1">
+                @using (Html.BeginForm("Insurance", "Insuarance"))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+                    <fieldset>
+                        <legend class="font-weight-semibold"><i class="icon-truck mr-2"></i> Insurance details</legend>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label">Reg Number :</label>
+                                    <div class="col-lg-6">
+                                        @Html.EditorFor(model => model.reg_no, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.reg_no, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label">Insurer :</label>
+                                    <div class="col-lg-6">
+                                        @Html.DropDownListFor(m => m.InsurerCode, ViewBag.List1 as SelectList, "--Please select Insurer--", new { @class = "form-control", required = "required" })
+                                        @Html.ValidationMessageFor(m => m.InsurerCode, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label">Insurance Policy Type :</label>
+                                    <div class="col-lg-6">
+                                        @Html.DropDownListFor(m => m.insurerance_policytype_id, new SelectList(""), "--Please select Policy type--", new { @class = "form-control", required = "required" })
+
+                                        @Html.ValidationMessageFor(m => m.insurerance_policytype_id, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label">Policy Number :</label>
+                                    <div class="col-lg-6">
+                                        @Html.TextBoxFor(m => m.policyNumber, new { @class = "form-control", Styles = "border-radius:50%", required = "required" })
+                                        @Html.ValidationMessageFor(m => m.policyNumber, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label">RSL Sticker number :</label>
+                                    <div class="col-lg-6">
+                                        @Html.TextBoxFor(m => m.RSLStickernumber, new { @class = "form-control", Styles = "border-radius:50%", required = "required" })
+                                        @Html.ValidationMessageFor(m => m.RSLStickernumber, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label">RSL Sticker number expiry_date :</label>
+                                    <div class="col-lg-6">
+                                        @Html.TextBoxFor(m => m.RSLStickernumberexpiry_date, new { @class = "form-control", @type = "date", Styles = "border-radius:50%", required = "required" })
+                                        @Html.ValidationMessageFor(m => m.RSLStickernumberexpiry_date, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label">Active from :</label>
+                                    <div class="col-lg-6">
+                                        @Html.TextBoxFor(m => m.active_from, new { @class = "form-control", @type = "date", Styles = "border-radius:50%", required = "required" })
+                                        @Html.ValidationMessageFor(m => m.active_from, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label">Expiry Date:</label>
+                                    <div class="col-lg-6">
+                                        @Html.TextBoxFor(m => m.expiryDate, new { @class = "form-control", @type = "date", Styles = "border-radius:50%", required = "required" })
+                                        @Html.ValidationMessageFor(m => m.expiryDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                    </fieldset>
+
+
+
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">Submit form <i class="icon-paperplane ml-2"></i></button>
+                    </div>
+
+
+                }
+                <!-- /saving state -->
+
+            </div>
+
+
+            <div class="tab-pane fade" id="bottom-justified-tab2">
+
+            </div>
+
+            <div class="tab-pane fade" id="bottom-justified-tab3">
+
+            </div>
+
+            <div class="tab-pane fade" id="bottom-justified-tab4">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script>
+
+    var $alert = $('.alert');
+    if ($alert.length) {
+        setTimeout(function () {
+            $alert.fadeIn(1000, 0);
+            $alert.fadeOut("slow");
+        }, 3000)
+
+    }
+</script>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#InsurerCode").change(function () {
+            $.get("/Insuarance/GetInsuranceIssuers", { InsurerCode: $("#InsurerCode").val() }, function (data) {
+                $("#insurerance_policytype_id").empty();
+                $.each(data, function (index, row) {
+                    $("#insurerance_policytype_id").append("<option value ='" + row.id + "'>" + row.policytypename + "</option>")
+                });
+            });
+        });
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#reg_no').autocomplete({
+            source: '/Insuarance/getVehicleRegNo'
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

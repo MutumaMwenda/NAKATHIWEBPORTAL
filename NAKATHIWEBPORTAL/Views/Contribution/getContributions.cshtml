@@ -1,0 +1,147 @@
+﻿@model IEnumerable<NAKATHIWEBPORTAL.Models.Contribution_Log>
+
+<script src="~/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+<script src="~/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+<script src="~/global_assets/js/demo_pages/datatables_basic.js"></script>
+<script src="~/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+<script src="~/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+<script src="~/global_assets/js/demo_pages/datatables_basic.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+<link href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css">
+
+@if (TempData["success"] != null)
+{
+    <div class="alert alert-success alert-dismissable" id="alert">
+        <strong>@TempData["success"]</strong>
+    </div>
+}
+
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-success alert-dismissable" id="alert">
+        <strong>@TempData["error"]</strong>
+    </div>
+}
+
+<div class="navbar navbar-expand-lg navbar-light " style="margin-bottom:16px">
+
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href="~/contribution/vehiclebased" class="navbar-nav-link  text-primary d-none d-md-block">
+                <i class="icon-add"></i>
+                Create New
+
+            </a>
+        </li>
+    </ul>
+
+
+
+
+
+</div>
+
+
+
+
+
+<!-- Basic datatable -->
+<!-- /main navbar -->
+
+<div class="card">
+
+    <div class="card-header header-elements-inline">
+        <h5 class="card-title text-center">Contributions</h5>
+
+        <div class="header-elements">
+            <div class="list-icons">
+
+            </div>
+        </div>
+    </div>
+
+
+    <table class="table display">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+
+                <th>
+                    Transaction ID
+                </th>
+
+                <th>
+                    Member
+                </th>
+                <th>
+                    Reg No
+                </th>
+                <th>
+                    Contribution Date
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+
+                    <td>
+                        <a href="@Url.Action( "getContribution",new { id = item.transactionId })"> @Html.DisplayFor(modelItem => item.transactionId)</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.member_id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.reg_no)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.contribution_date)
+                    </td>
+
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
+<script>
+
+    var $alert = $('.alert');
+    if ($alert.length) {
+        setTimeout(function () {
+            $alert.fadeIn(1000, 0);
+            $alert.fadeOut("slow");
+        }, 3000)
+
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        $('.table').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'excel', 'pdf', 'print'
+            ],
+        });
+    });
+
+
+</script>
+

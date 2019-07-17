@@ -1,0 +1,134 @@
+﻿@model NAKATHIWEBPORTAL.Models.Daily_Savings_collection
+
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html class="no-js" lang="">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Nakathi Web Portal</title>
+    <meta name="description" content="Ela Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    @Html.Partial("style12")
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <!-- Left Panel -->
+    @Html.Partial("sidebar")
+    <!-- /#left-panel -->
+    <!-- Right Panel -->
+    <div id="right-panel" class="right-panel">
+        <!-- Header-->
+       
+        <!-- /#header -->
+        <!-- Content -->
+        <div class="container">
+            <h2>Dynamic Tabs</h2>
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                <li><a data-toggle="tab" href="#menu1">Vehicle Based Tab</a></li>
+                <li><a data-toggle="tab" href="#menu2">Individual Based Tabl</a></li>
+                <li><a data-toggle="tab" href="#menu3">Add Revenue</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="home" class="tab-pane fade in active">
+                    <h3>HOME</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div id="menu1" class="tab-pane fade">
+                    <h3>Vehicle Based</h3>
+                    @Html.Partial("VehicleBased")
+                </div>
+                <div id="menu2" class="tab-pane fade">
+                    <h3>Individual Based</h3>
+                    @Html.Partial("IndividualBased")
+                </div>
+                <div id="menu3" class="tab-pane fade">
+                    <h3>Menu 3</h3>
+                    <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- .animated -->
+    </div>
+
+    <!-- /.content -->
+    <div class="clearfix"></div>
+    <!-- Footer -->
+    <footer class="site-footer">
+
+        @*@Html.Partial("footer12")*@
+    </footer>
+    <!-- /.site-footer -->
+    <!-- /#right-panel -->
+    <!-- Scripts -->
+    @Html.Partial("scripts12")
+
+    <script>
+
+        var $alert = $('.alert');
+        if ($alert.length) {
+            setTimeout(function () {
+                $alert.fadeIn(1000, 0);
+                $alert.fadeOut("slow");
+            }, 3000)
+
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
